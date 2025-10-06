@@ -1,0 +1,165 @@
+/* Variables and General Reset */
+:root {
+    --primary-color: #007bff;
+    --dark-color: #1a1a1a;
+    --text-color: #555;
+    --light-bg: #f4f4f4;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: var(--light-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Main Login Wrapper */
+#login-container {
+    width: 100%;
+    max-width: 450px;
+    background-color: var(--white);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header/Logo */
+header {
+    padding: 20px 30px;
+    background-color: var(--white);
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--dark-color);
+}
+
+.logo i {
+    color: var(--primary-color);
+    margin-right: 5px;
+}
+
+/* Login Card Content */
+.login-card {
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.login-card h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 16px;
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+
+/* Form Styling */
+.form-group {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-bg);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+
+.form-group i {
+    color: var(--text-color);
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.form-group input {
+    flex-grow: 1;
+    padding: 15px 0;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    outline: none;
+    color: var(--dark-color);
+}
+
+/* Options */
+.options {
+    text-align: right;
+    margin-bottom: 30px;
+}
+
+.forgot-link {
+    font-size: 14px;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: text-decoration 0.3s;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* Button */
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-bottom: 25px;
+}
+
+.btn-primary:hover {
+    background: #0056b3;
+}
+
+/* Register Link */
+.register-link {
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+.link-secondary {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link-secondary:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    padding: 15px 30px;
+    background-color: var(--light-bg);
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+footer p {
+    font-size: 12px;
+    color: var(--text-color);
+}

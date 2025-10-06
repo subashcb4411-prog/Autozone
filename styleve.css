@@ -1,0 +1,239 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  color: #333;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+header .logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #0056d2;
+}
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+nav a:hover, nav a.active {
+  color: #0056d2;
+}
+
+/* Hero Section */
+.hero {
+  background: url('https://images.unsplash.com/photo-1549921296-3a0c8c2a4ff7?auto=format&fit=crop&w=1600&q=80') no-repeat center/cover;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+.hero h1, .hero p, .hero a {
+  position: relative;
+  z-index: 1;
+}
+.hero h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.hero a {
+  background: #0056d2;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s;
+}
+.hero a:hover {
+  background: #003c9e;
+  transform: scale(1.05);
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+  gap: 10px;
+}
+.filters button {
+  border: 1px solid #ccc;
+  padding: 8px 20px;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.filters button.active, .filters button:hover {
+  background: #0056d2;
+  color: white;
+  border-color: #0056d2;
+}
+
+/* Vehicle Cards */
+.vehicles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 0 50px 50px;
+}
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.card-content {
+  padding: 15px;
+  background: #0056d2;
+  color: white;
+}
+.card-content h3 {
+  margin: 0 0 5px;
+}
+.card-content p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+.card-content a {
+  display: inline-block;
+  background: white;
+  color: #0056d2;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+.card-content a:hover {
+  background: #003c9e;
+  color: white;
+}
+
+/* Why Choose Us */
+.why {
+  text-align: center;
+  padding: 50px;
+  background: #f1f5ff;
+}
+.why h2 {
+  margin-bottom: 30px;
+}
+.why-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+.why-items div {
+  max-width: 220px;
+  text-align: center;
+}
+
+/* Testimonials */
+.testimonials {
+  padding: 50px;
+  background: white;
+}
+.testimonials h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.test-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+.test-card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 300px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+.test-card:hover {
+  transform: translateY(-5px);
+}
+.test-card img {
+  border-radius: 50%;
+  width: 60px;
+  margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+  background: #222;
+  color: #bbb;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+footer a {
+  color: #bbb;
+  margin: 0 10px;
+  text-decoration: none;
+}
+footer a:hover {
+  color: #fff;
+}
+footer .socials {
+  margin-top: 10px;
+}
+footer .socials img {
+  width: 24px;
+  margin: 0 8px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s;
+}
+footer .socials img:hover {
+  transform: scale(1.2);
+}
