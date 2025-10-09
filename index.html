@@ -5,11 +5,10 @@
   <title>AutoZone - Find Your Perfect Ride</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <script src="script.js"></script>
-
+  <script defer src="script.js"></script>
 </head>
 <body>
-  
+
   <!-- Header -->
   <header>
     <a href="#" class="logo">AutoZone</a>
@@ -22,21 +21,49 @@
         <li><a href="Email.html">Email</a></li>
       </ul>
     </nav>
-  </header> 
+  </header>
 
   <!-- Hero Section -->
   <section class="hero">
     <h2>Find Your Perfect Ride</h2>
-    <p>Browse new, used and luxury cars from trusted dealers.</p>
+    <p>Browse new, used, and luxury cars from trusted dealers.</p>
+
+    <!-- Search -->
     <div class="search-area">
       <input type="text" placeholder="Search by brand or model">
       <button>Search</button>
     </div>
+
+    <!-- Filters -->
     <div class="filters">
-      <select><option>Type</option></select>
-      <select><option>Brand</option></select>
-      <select><option>Year</option></select>
-      <select><option>Price</option></select>
+      <select>
+        <option>Type</option>
+        <option>Sedan</option>
+        <option>SUV</option>
+        <option>Luxury</option>
+      </select>
+
+      <select>
+        <option>Brand</option>
+        <option>Toyota</option>
+        <option>BMW</option>
+        <option>Audi</option>
+        <option>Mercedes</option>
+      </select>
+
+      <select>
+        <option>Year</option>
+        <option>2019</option>
+        <option>2020</option>
+        <option>2021</option>
+      </select>
+
+      <select>
+        <option>Price</option>
+        <option>Under 30000</option>
+        <option>30000-40000</option>
+        <option>Above 40000</option>
+      </select>
     </div>
 
     <!-- Image Slider -->
@@ -60,25 +87,25 @@
   <section class="featured">
     <h2>Featured Vehicles</h2>
     <div class="car-grid">
-      <div class="car-card">
+      <div class="car-card" data-type="Sedan" data-brand="Toyota" data-year="2021" data-price="24000">
         <img src="Assets/car1.jpg" alt="Toyota Camry">
         <h3>Toyota Camry</h3>
         <p>2021 | 15,000 miles</p>
         <span>$24,000</span>
       </div>
-      <div class="car-card">
+      <div class="car-card" data-type="Sedan" data-brand="BMW" data-year="2020" data-price="32500">
         <img src="Assets/car2.jpg" alt="BMW 3 Series">
         <h3>BMW 3 Series</h3>
         <p>2020 | 33,500 miles</p>
         <span>$32,500</span>
       </div>
-      <div class="car-card">
+      <div class="car-card" data-type="SUV" data-brand="Audi" data-year="2019" data-price="28800">
         <img src="Assets/car3.jpg" alt="Audi Q5">
         <h3>Audi Q5</h3>
         <p>2019 | 30,400 miles</p>
         <span>$28,800</span>
       </div>
-      <div class="car-card">
+      <div class="car-card" data-type="Luxury" data-brand="Mercedes" data-year="2021" data-price="41000">
         <img src="Assets/car4.jpg" alt="Mercedes C-Class">
         <h3>Mercedes-Benz C-Class</h3>
         <p>2021 | 41,000 miles</p>
@@ -94,7 +121,7 @@
   <!-- Testimonial -->
   <section class="testimonial">
     <p>⭐⭐⭐⭐⭐</p>
-    <p>"Great selection of cars and excellent customer service. I found exactly what I was looking for"</p>
+    <p>"Great selection of cars and excellent customer service. I found exactly what I was looking for."</p>
     <h4>- John D.</h4>
   </section>
 

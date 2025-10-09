@@ -1,72 +1,62 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ====================
-  // Search Functionality
-  // ====================
   const searchInput = document.querySelector(".search-area input");
+  const searchButton = document.querySelector(".search-area button");
   const carCards = document.querySelectorAll(".car-card");
+  const filters = document.querySelectorAll(".filters select");
 
-  document.querySelector(".search-area button").addEventListener("click", () => {
-    const searchTerm = searchInput.value.toLowerCase();
+  // === APPLY ALL FILTERS + SEARCH COMBINED ===
+  function applyAllFilters() {
+    const searchValue = searchInput.value.trim().toLowerCase();
+    const [typeFilter, brandFilter, yearFilter, priceFilter] = [...filters].map(f => f.value.toLowerCase());
 
     carCards.forEach(card => {
-      const title = card.querySelector("h3").textContent.toLowerCase();
-      if (title.includes(searchTerm) || searchTerm === "") {
-        card.style.display = "block";
-      } else {
-        card.style.display = "none";
+      const type = card.dataset.type.toLowerCase();
+      const brand = card.dataset.brand.toLowerCase();
+      const year = card.dataset.year.toLowerCase();
+      const price = parseFloat(card.dataset.price);
+      const name = card.querySelector("h3").textContent.toLowerCase();
+
+      let visible = true;
+
+      // search condition
+      if (searchValue && !name.includes(searchValue)) visible = false;
+      // filters
+      if (typeFilter !== "type" && type !== typeFilter) visible = false;
+      if (brandFilter !== "brand" && brand !== brandFilter) visible = false;
+      if (yearFilter !== "year" && year !== yearFilter) visible = false;
+
+      if (priceFilter !== "price") {
+        if (priceFilter === "under 30000" && price > 30000) visible = false;
+        if (priceFilter === "30000-40000" && (price < 30000 || price > 40000)) visible = false;
+        if (priceFilter === "above 40000" && price < 40000) visible = false;
       }
-    });
-  });
 
-  // ====================
-  // Auto Image Slider
-  // ====================
-  const slides = document.querySelectorAll(".slider img");
-  let index = 0;
-
-  function showSlide() {
-    slides.forEach((slide, i) => {
-      slide.style.display = (i === index) ? "block" : "none";
-      slide.style.width = "100%"; // make responsive
+      card.style.display = visible ? "block" : "none";
     });
-    index = (index + 1) % slides.length;
   }
 
-  showSlide(); 
-  setInterval(showSlide, 3000);
+  // === TRIGGERS ===
+  searchInput.addEventListener("input", applyAllFilters);
+  searchButton.addEventListener("click", applyAllFilters);
+  filters.forEach(filter => filter.addEventListener("change", applyAllFilters));
 
-  // ====================
-  // Active Navigation Link
-  // ====================
-  const navLinks = document.querySelectorAll(".nav-links a");
-  navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-      navLinks.forEach(l => l.classList.remove("active"));
-      link.classList.add("active");
-    });
-  });
-
-  // ====================
-  // Mobile Menu Toggle
-  // ====================
-  const nav = document.querySelector("nav ul");
-  const menuBtn = document.createElement("div");
-  menuBtn.classList.add("menu-btn");
-  menuBtn.innerHTML = "☰"; // hamburger icon
-  document.querySelector("header").insertBefore(menuBtn, nav);
-
-  menuBtn.addEventListener("click", () => {
-    nav.classList.toggle("show-menu");
-  });
-
-  // ====================
-  // Responsive Adjustments
-  // ====================
-  function handleResize() {
-    if (window.innerWidth > 768) {
-      nav.classList.remove("show-menu"); // reset menu on desktop
+  // === BOOK TEST DRIVE ===
+  const bookBtn = document.querySelector(".actions .btn:first-child");
+  bookBtn.addEventListener("click", () => {
+    const visibleCars = [...carCards].filter(c => c.style.display !== "none");
+    if (visibleCars.length === 1) {
+      const carName = visibleCars[0].querySelector("h3").textContent;
+      alert(`✅ Test drive booked for ${carName}!`);
+    } else if (visibleCars.length > 1) {
+      alert("🚗 Please filter to one car before booking a test drive.");
+    } else {
+      alert("❌ No car visible. Please search or filter to choose a car first.");
     }
-  }
+  });
 
-  window.addEventListener("resize", handleResize);
+  // === VIEW SERVICES ===
+  const serviceBtn = document.querySelector(".actions .btn:last-child");
+  serviceBtn.addEventListener("click", () => {
+    window.location.href = "services.html";
+  });
 });
