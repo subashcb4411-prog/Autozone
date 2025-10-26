@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Details</title>
+  <link rel="stylesheet" href="styleve.css">
+  <style>
+    /* Vehicle Details Section */
+    .vehicle-details {
+      padding: 3rem 10%;
+      display: flex;
+      justify-content: center;
+      background: var(--bg-color);
+    }
+
+    .details-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+    }
+
+    .vehicle-image {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .vehicle-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .vehicle-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .vehicle-info h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .vehicle-info p {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .vehicle-info .price {
+      font-weight: bold;
+      color: var(--accent);
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .vehicle-info .btn {
+      display: inline-block;
+      text-decoration: none;
+      background-color: var(--accent);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .vehicle-info .btn:hover {
+      background-color: var(--accent-dark);
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .details-container {
+        flex-direction: column;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">AutoZone</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="vehicles.html">Vehicles</a>
+      <a href="services.html">Services</a>
+      <a href="contact.html">Contact</a>
+      <a href="Email.html">Email</a>
+    </nav>
+  </header>
+
+  <!-- Vehicle Details Section -->
+  <section class="vehicle-details">
+    <div class="details-container">
+      <div class="vehicle-image">
+        <img id="vehicle-image" src="" alt="Vehicle Image">
+      </div>
+      <div class="vehicle-info">
+        <h1 id="vehicle-name">Vehicle Name</h1>
+        <p id="vehicle-type">Type</p>
+        <p id="vehicle-fuel">Fuel</p>
+        <p id="vehicle-transmission">Transmission</p>
+        <p id="vehicle-mileage">Mileage</p>
+        <p id="vehicle-price">$0</p>
+        <p id="vehicle-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <a href="#" class="btn">Book Test Drive</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 AutoZone | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+    <div class="socials">
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
+      <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram"></a>
+    </div>
+  </footer>
+
+  <!-- JS for Dynamic Vehicle Details -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const car = urlParams.get('car');
+
+    const carData = {
+      toyota: {
+        name: "Toyota Corolla",
+        image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+        type: "Sedan",
+        fuel: "Petrol",
+        transmission: "Automatic",
+        mileage: "20 km/l",
+        price: "$18,000",
+        desc: "Reliable and fuel-efficient, perfect for daily commuting."
+      },
+      honda: {
+        name: "Honda Civic",
+        image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+        type: "Sedan",
+        fuel: "Petrol",
+        transmission: "Automatic",
+        mileage: "22 km/l",
+        price: "$20,000",
+        desc: "Comfortable ride with modern features and smooth handling."
+      },
+      ford: {
+        name: "Ford Escape",
+        image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80",
+        type: "SUV",
+        fuel: "Petrol",
+        transmission: "Automatic",
+        mileage: "22 km/l",
+        price: "$25,000",
+        desc: "Spacious SUV with great mileage and reliable performance."
+      }
+    };
+
+    if(carData[car]){
+      document.getElementById("vehicle-image").src = carData[car].image;
+      document.getElementById("vehicle-name").textContent = carData[car].name;
+      document.getElementById("vehicle-type").textContent = "Type: " + carData[car].type;
+      document.getElementById("vehicle-fuel").textContent = "Fuel: " + carData[car].fuel;
+      document.getElementById("vehicle-transmission").textContent = "Transmission: " + carData[car].transmission;
+      document.getElementById("vehicle-mileage").textContent = "Mileage: " + carData[car].mileage;
+      document.getElementById("vehicle-price").textContent = carData[car].price;
+      document.getElementById("vehicle-desc").textContent = carData[car].desc;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,17 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AutoZone - Vehicles</title>
   <link rel="stylesheet" href="styleve.css">
+  <script src="jsv.js" defer></script>
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="logo">AutoZone</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="vehicles.html" class="active">Vehicles</a>
-      <a href="services.html">Services</a>
-      <a href="contact.html">Contact</a>
-      <a href="Email.html">Email</a>
+   <a href="index.html">Home</a>
+<a href="vehicles.html" class="active">Vehicles</a>
+<a href="services.html">Services</a>
+<a href="contact.html">Contact</a>
+<a href="Email.html">Email</a>
 
     </nav>
   </header>
@@ -26,6 +26,16 @@
     <h1>Explore Our Wide Range of Vehicles</h1>
     <p>Find the perfect car that suits your lifestyle and budget</p>
     <a href="#">View Vehicles</a>
+  </section>
+
+  <!-- Image Slider -->
+  <section class="slider">
+    <div class="slides">
+      <img id="slide-1" src="Toyota Camry.png" alt="Toyota Camry">
+      <img id="slide-2" src="BMW 3 Series.png" alt="BMW 3 Series">
+      <img id="slide-3" src="Audi Q5.png" alt="Audi Q5">
+      <img id="slide-4" src="Mercedes-Benz C-Class.png" alt="Mercedes-Benz C-Class">
+    </div>
   </section>
 
   <!-- Filters -->
@@ -40,31 +50,41 @@
   <!-- Vehicle Cards -->
   <section class="vehicles">
     <div class="card">
-      <img src="#" alt="Toyota">
+      <img src="Toyota Camry.png" alt="Toyota Camry">
       <div class="card-content">
-        <h3>Toyota Corolla</h3>
-        <p>Petrol | Auto</p>
-        <p class="price">$18,000</p>
-        <a href="#">View Details</a>
-      </div>
-    </div>
-
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80" alt="Honda">
-      <div class="card-content">
-        <h3>Honda Civic</h3>
+        <h3>Toyota Camry</h3>
         <p>Petrol | Automatic</p>
-        <p class="price">$20,000</p>
+        <p class="price">$24,000</p>
         <a href="#">View Details</a>
       </div>
     </div>
 
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Ford">
+      <img src="BMW 3 Series.png" alt="BMW 3 Series">
       <div class="card-content">
-        <h3>Ford Escape</h3>
-        <p>Petrol | Mileage 22 km/l</p>
-        <p class="price">$25,000</p>
+        <h3>BMW 3 Series</h3>
+        <p>Diesel | Automatic</p>
+        <p class="price">$40,000</p>
+        <a href="vehicle-details.html">View Details</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="Audi Q5.png" alt="Audi Q5">
+      <div class="card-content">
+        <h3>Audi Q5</h3>
+        <p>Petrol | Mileage 20 km/l</p>
+        <p class="price">$50,000</p>
+        <a href="#">View Details</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="Mercedes-Benz C-Class.png" alt="Mercedes-Benz C-Class">
+      <div class="card-content">
+        <h3>Mercedes-Benz C-Class</h3>
+        <p>Diesel | Automatic</p>
+        <p class="price">$55,000</p>
         <a href="#">View Details</a>
       </div>
     </div>
@@ -98,12 +118,12 @@
     <h2>Customer Testimonials</h2>
     <div class="test-cards">
       <div class="test-card">
-        <img src="#" alt="Jane">
+        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Jane">
         <p>“I bought my SUV from AutoZone, smooth experience!”</p>
         <strong>Jane D.</strong>
       </div>
       <div class="test-card">
-        <img src="#" alt="Mark">
+        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Mark">
         <p>“Friendly staff and honest advice. Highly recommend AutoZone!”</p>
         <strong>Mark S.</strong>
       </div>

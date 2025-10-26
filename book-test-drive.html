@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book a Test Drive | AutoZone</title>
+  <link rel="stylesheet" href="stylebook.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script defer src="book.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="logo">AutoZone</a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Vehicles.html">Vehicles</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="Email.html">Email</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Booking Form -->
+  <section class="booking">
+    <h2>Book a Test Drive</h2>
+    <p>Fill out the form below to schedule your test drive.</p>
+
+    <form id="testDriveForm">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" required>
+
+      <label for="car">Select Car</label>
+      <select id="car" required>
+        <option value="">-- Choose a Car --</option>
+        <option value="Toyota Camry">Toyota Camry</option>
+        <option value="BMW 3 Series">BMW 3 Series</option>
+        <option value="Audi Q5">Audi Q5</option>
+        <option value="Mercedes-Benz C-Class">Mercedes-Benz C-Class</option>
+      </select>
+
+      <label for="date">Preferred Date</label>
+      <input type="date" id="date" required>
+
+      <label for="time">Preferred Time</label>
+      <input type="time" id="time" required>
+
+      <button type="submit" class="btn">Confirm Booking</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-info">
+      <div>
+        <h4>Contact Us</h4>
+        <p>1234 Elm St. Springfield, IL 62701</p>
+        <p>(555) 129-4587</p>
+        <p>info@autozone.com</p>
+      </div>
+      <div>
+        <h4>Follow Us</h4>
+        <p>Facebook | Twitter | Instagram</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

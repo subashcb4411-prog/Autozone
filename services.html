@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="styleser.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/6e8f3f3a5c.js" crossorigin="anonymous"></script>
+  <script src="sser.js"></script>
+
 </head>
 <body>
   <!-- Header -->
@@ -15,11 +17,11 @@
       <i class="fas fa-car"></i> AutoZone
     </div>
     <nav>
-       <a href="index.html">Home</a>
-      <a href="vehicles.html" >Vehicles</a>
-      <a href="services.html" class="active">Services</a>
-      <a href="contact.html">Contact</a>
-      <a href="Email.html">Email</a>
+        <a href="index.html">Home</a>
+<a href="vehicles.html" >Vehicles</a>
+<a href="services.html">Services</a>
+<a href="contact.html"class="active">Contact</a>
+<a href="Email.html">Email</a>
     </nav>
   </header>
 
@@ -91,4 +93,14 @@
     </div>
   </section>
 </body>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const bookBtn = document.querySelector(".btn");
+    bookBtn.addEventListener("click", function (e) {
+      e.preventDefault(); // Prevent default link behavior
+      alert("Thank you for choosing AutoZone! We'll contact you shortly to confirm your booking.");
+    });
+  });
+</script>
+
 </html>

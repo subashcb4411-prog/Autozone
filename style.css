@@ -48,7 +48,6 @@ header {
   text-decoration: none;
   font-size: 18px;
   color: var(--text-color);
-  transition: 0.3s;
 }
 
 .nav-links a.active,
@@ -106,54 +105,21 @@ header {
 /* Slider */
 .slider-wrapper {
   position: relative;
-  max-width: 100%;
+  width: 100%;
   margin: 2rem 0;
-  padding: 0;
 }
 
 .slider {
   display: flex;
   width: 100%;
   aspect-ratio: 16/9;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  overflow-x: hidden;
   scroll-behavior: smooth;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.slider::-webkit-scrollbar {
-  display: none;
 }
 
 .slider img {
   flex: 1 0 100%;
-  scroll-snap-align: start;
   object-fit: cover;
-  border-radius: 0;
-}
-
-.slider-nav {
-  display: flex;
-  gap: 1rem;
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.slider-nav a {
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 50%;
-  background: white;
-  opacity: 0.7;
-  transition: 0.3s;
-}
-
-.slider-nav a:hover {
-  opacity: 1;
-  transform: scale(1.2);
 }
 
 /* Featured Vehicles */
@@ -179,11 +145,6 @@ header {
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.car-card:hover {
-  transform: translateY(-5px);
 }
 
 .car-card img {
@@ -229,11 +190,6 @@ header {
   background: #f1f5ff;
   padding: 3rem 1rem;
   margin-top: 3rem;
-}
-
-.testimonial p {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
 }
 
 /* Footer */
