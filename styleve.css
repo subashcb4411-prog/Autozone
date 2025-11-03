@@ -200,7 +200,7 @@ header nav a:hover {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   display: inline-block;
-  transition: 0.3s;
+  transition: 0.1s;
 }
 
 .card-content a:hover {

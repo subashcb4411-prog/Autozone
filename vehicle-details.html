@@ -1,126 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vehicle Details</title>
-  <link rel="stylesheet" href="styleve.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vehicle Details | AutoZone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* Vehicle Details Section */
+    :root {
+      --bg-color: #f4f7fc;
+      --white: #ffffff;
+      --accent: #007bff;
+      --accent-dark: #0056b3;
+      --text-color: #333;
+      --shadow: rgba(0,0,0,0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
+
+    header {
+      background: var(--white);
+      box-shadow: 0 2px 5px var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 10%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--accent);
+    }
+
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 100%;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
     .vehicle-details {
-      padding: 3rem 10%;
+      padding: 4rem 10%;
       display: flex;
       justify-content: center;
-      background: var(--bg-color);
+      align-items: center;
+      background: linear-gradient(120deg, #e0f1ff, #f9f9f9);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .details-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 2rem;
+      gap: 2.5rem;
       max-width: 1200px;
-      width: 100%;
       background: var(--white);
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px var(--shadow);
+      padding: 2.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    .details-container:hover {
+      transform: translateY(-5px);
     }
 
     .vehicle-image {
       flex: 1;
-      min-width: 300px;
+      min-width: 320px;
+      border-radius: 12px;
     }
 
     .vehicle-image img {
       width: 100%;
-      height: auto;
-      border-radius: 10px;
+      border-radius: 12px;
       object-fit: cover;
+      box-shadow: 0 4px 15px var(--shadow);
     }
 
     .vehicle-info {
       flex: 1;
-      min-width: 300px;
+      min-width: 320px;
+      animation: slideIn 1.2s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     .vehicle-info h1 {
       font-size: 2rem;
+      color: var(--accent-dark);
       margin-bottom: 1rem;
     }
 
-    .vehicle-info p {
-      font-size: 1rem;
-      margin-bottom: 0.8rem;
+    .rating {
+      color: gold;
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
     }
 
-    .vehicle-info .price {
+    .specs {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .specs td {
+      padding: 0.5rem 0.3rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .specs td:first-child {
+      font-weight: 600;
+      color: var(--accent-dark);
+      width: 40%;
+    }
+
+    .price {
+      font-size: 1.6rem;
       font-weight: bold;
       color: var(--accent);
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
+      margin: 1rem 0;
     }
 
-    .vehicle-info .btn {
+    .btn, .wishlist {
       display: inline-block;
       text-decoration: none;
-      background-color: var(--accent);
+      border: none;
+      background: linear-gradient(90deg, var(--accent), var(--accent-dark));
       color: var(--white);
       padding: 0.8rem 1.5rem;
-      border-radius: 5px;
-      font-weight: bold;
-      transition: 0.3s;
+      border-radius: 30px;
+      font-weight: 600;
       cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: 0.4s ease;
+      margin-top: 1rem;
     }
 
-    .vehicle-info .btn:hover {
-      background-color: var(--accent-dark);
+    .btn:hover,
+    .wishlist:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
     }
 
-    /* Responsive */
+    .wishlist {
+      background: #444;
+      margin-left: 0.8rem;
+    }
+
+    footer {
+      background: #111;
+      color: #ddd;
+      text-align: center;
+      padding: 1.5rem 10%;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    footer .socials {
+      margin-top: 1rem;
+    }
+
+    footer .socials img {
+      width: 24px;
+      margin: 0 8px;
+      transition: 0.3s;
+      filter: brightness(0) invert(1);
+    }
+
+    footer .socials img:hover {
+      transform: scale(1.2);
+    }
+
     @media screen and (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+      nav {
+        flex-direction: column;
+      }
       .details-container {
         flex-direction: column;
-        padding: 1rem;
+        padding: 1.5rem;
+      }
+      .vehicle-info h1, .price {
+        text-align: center;
+      }
+      .btn, .wishlist {
+        display: block;
+        width: 100%;
+        margin: 0.5rem 0;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <header>
     <div class="logo">AutoZone</div>
     <nav>
       <a href="index.html">Home</a>
-      <a href="vehicles.html">Vehicles</a>
+      <a href="vehicles.html" class="active">Vehicles</a>
       <a href="services.html">Services</a>
       <a href="contact.html">Contact</a>
       <a href="Email.html">Email</a>
     </nav>
   </header>
 
-  <!-- Vehicle Details Section -->
   <section class="vehicle-details">
     <div class="details-container">
       <div class="vehicle-image">
-        <img id="vehicle-image" src="" alt="Vehicle Image">
+        <img id="vehicle-image" src="BMW 3 Series.png" alt="Vehicle Image">
       </div>
       <div class="vehicle-info">
-        <h1 id="vehicle-name">Vehicle Name</h1>
-        <p id="vehicle-type">Type</p>
-        <p id="vehicle-fuel">Fuel</p>
-        <p id="vehicle-transmission">Transmission</p>
-        <p id="vehicle-mileage">Mileage</p>
-        <p id="vehicle-price">$0</p>
-        <p id="vehicle-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        <a href="#" class="btn">Book Test Drive</a>
+        <h1 id="vehicle-name">Loading...</h1>
+        <div class="rating" id="vehicle-rating">⭐⭐⭐⭐☆</div>
+
+<table class="specs">
+  <tr>
+    <td>Type</td>
+    <td>Sedan</td>
+  </tr>
+  <tr>
+    <td>Fuel</td>
+    <td>Diesel</td>
+  </tr>
+  <tr>
+    <td>Transmission</td>
+    <td>Automatic</td>
+  </tr>
+  <tr>
+    <td>Mileage</td>
+    <td>17.42 km/l</td>
+  </tr>
+</table>
+
+
+        <div class="price" id="vehicle-price"></div>
+        <p id="vehicle-desc"></p>
+
+        <button class="btn" id="book-btn">Book Test Drive</button>
+        <button class="wishlist" id="wishlist-btn">♡ Add to Wishlist</button>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
-    <p>&copy; 2024 AutoZone | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
+    <p>&copy; 2025 AutoZone | <a href="#">Privacy Policy</a> | <a href="#">Terms</a></p>
     <div class="socials">
       <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"></a>
       <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></a>
@@ -128,10 +308,10 @@
     </div>
   </footer>
 
-  <!-- JS for Dynamic Vehicle Details -->
   <script>
+  document.addEventListener("DOMContentLoaded", () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const car = urlParams.get('car');
+    const car = urlParams.get("car");
 
     const carData = {
       toyota: {
@@ -142,17 +322,19 @@
         transmission: "Automatic",
         mileage: "20 km/l",
         price: "$18,000",
-        desc: "Reliable and fuel-efficient, perfect for daily commuting."
+        desc: "Reliable and fuel-efficient, perfect for daily commuting.",
+        rating: "⭐⭐⭐⭐☆"
       },
       honda: {
         name: "Honda Civic",
-        image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=800&q=80",
         type: "Sedan",
         fuel: "Petrol",
         transmission: "Automatic",
         mileage: "22 km/l",
         price: "$20,000",
-        desc: "Comfortable ride with modern features and smooth handling."
+        desc: "Comfortable ride with modern features and smooth handling.",
+        rating: "⭐⭐⭐⭐⭐"
       },
       ford: {
         name: "Ford Escape",
@@ -160,22 +342,87 @@
         type: "SUV",
         fuel: "Petrol",
         transmission: "Automatic",
-        mileage: "22 km/l",
+        mileage: "18 km/l",
         price: "$25,000",
-        desc: "Spacious SUV with great mileage and reliable performance."
+        desc: "Spacious SUV with great mileage and reliable performance.",
+        rating: "⭐⭐⭐⭐"
+      },
+      bmw: {
+        name: "BMW 5 Series",
+        image: "https://images.unsplash.com/photo-1605559424843-9e4f3b5a8a4e?auto=format&fit=crop&w=800&q=80",
+        type: "Sedan",
+        fuel: "Diesel",
+        transmission: "Automatic",
+        mileage: "16 km/l",
+        price: "$55,000",
+        desc: "Luxury sedan offering comfort, power, and cutting-edge technology.",
+        rating: "⭐⭐⭐⭐⭐"
       }
     };
 
-    if(carData[car]){
-      document.getElementById("vehicle-image").src = carData[car].image;
-      document.getElementById("vehicle-name").textContent = carData[car].name;
-      document.getElementById("vehicle-type").textContent = "Type: " + carData[car].type;
-      document.getElementById("vehicle-fuel").textContent = "Fuel: " + carData[car].fuel;
-      document.getElementById("vehicle-transmission").textContent = "Transmission: " + carData[car].transmission;
-      document.getElementById("vehicle-mileage").textContent = "Mileage: " + carData[car].mileage;
-      document.getElementById("vehicle-price").textContent = carData[car].price;
-      document.getElementById("vehicle-desc").textContent = carData[car].desc;
-    }
+    const selectedCar = carData[car?.toLowerCase()] || {
+      name: "BMw 3 series",
+      image: "https://via.placeholder.com/800x500?text=Vehicle+Not+Found",
+      type: "N/A",
+      fuel: "N/A",
+      transmission: "N/A",
+      mileage: "N/A",
+      price: "$0",
+      desc: "Vehicle details not available.",
+      rating: "☆☆☆☆☆"
+    };
+
+    document.getElementById("vehicle-image").src = selectedCar.image;
+    document.getElementById("vehicle-name").textContent = selectedCar.name;
+    document.getElementById("vehicle-type").textContent = selectedCar.type;
+    document.getElementById("vehicle-fuel").textContent = selectedCar.fuel;
+    document.getElementById("vehicle-transmission").textContent = selectedCar.transmission;
+    document.getElementById("vehicle-mileage").textContent = selectedCar.mileage;
+    document.getElementById("vehicle-price").textContent = selectedCar.price;
+    document.getElementById("vehicle-desc").textContent = selectedCar.desc;
+    document.getElementById("vehicle-rating").textContent = selectedCar.rating;
+
+    // Wishlist Feature
+    const wishlistBtn = document.getElementById("wishlist-btn");
+    wishlistBtn.addEventListener("click", () => {
+      let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+      if (!wishlist.includes(selectedCar.name)) {
+        wishlist.push(selectedCar.name);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        wishlistBtn.textContent = "✓ Added to Wishlist";
+        wishlistBtn.style.backgroundColor = "var(--accent-dark)";
+      } else {
+        wishlistBtn.textContent = "♡ Add to Wishlist";
+        wishlist = wishlist.filter(item => item !== selectedCar.name);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        wishlistBtn.style.backgroundColor = "#444";
+      }
+    });
+// ✅ Wait until the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+  const bookBtn = document.getElementById("book-btn");
+
+  // Ensure the button exists before attaching listener
+  if (bookBtn) {
+    bookBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      // Ensure selectedCar exists and has a name
+      if (typeof selectedCar !== "undefined" && selectedCar.name) {
+        alert(`✅ Test drive booked successfully for ${selectedCar.name}!`);
+
+        // Encode the car name for URL safety
+        const carName = encodeURIComponent(selectedCar.name);
+        window.location.href = `book.html?car=${carName}`;
+      } else {
+        alert("⚠️ Please select a car before booking a test drive.");
+      }
+    });
+  } else {
+    console.error("❌ 'book-btn' not found in the document.");
+  }
+});});
+
   </script>
 
 </body>

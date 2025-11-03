@@ -4,10 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const carCards = document.querySelectorAll(".car-card");
   const filters = document.querySelectorAll(".filters select");
   const sortSelect = document.getElementById("sort-by");
-  const activeFilterContainer = document.querySelector(".active-filters");
   const resetBtn = document.getElementById("reset-filters");
 
-  // Apply filters and search
+  // --- MAIN FILTER FUNCTION ---
   function applyAllFilters() {
     const searchValue = searchInput.value.trim().toLowerCase();
     const [typeFilter, brandFilter, yearFilter, priceFilter] = [...filters].map(f => f.value.toLowerCase());
@@ -19,8 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const price = parseFloat(card.dataset.price);
       const name = card.querySelector("h3").textContent.toLowerCase();
 
-      let matchesSearch = !searchValue || name.includes(searchValue) || brand.includes(searchValue);
-      let matchesFilters =
+      const matchesSearch = !searchValue || name.includes(searchValue) || brand.includes(searchValue);
+      const matchesFilters =
         (typeFilter === "type" || type === typeFilter) &&
         (brandFilter === "brand" || brand === brandFilter) &&
         (yearFilter === "year" || year === yearFilter) &&
@@ -29,37 +28,24 @@ document.addEventListener("DOMContentLoaded", () => {
           (priceFilter === "30000-40000" && price >= 30000 && price <= 40000) ||
           (priceFilter === "above 40000" && price > 40000));
 
-      card.style.display = matchesSearch && matchesFilters ? "block" : "none";
+      if (matchesSearch && matchesFilters) {
+        card.classList.remove("hidden-card");
+      } else {
+        card.classList.add("hidden-card");
+      }
     });
 
-    updateActiveFilters();
     applySorting();
   }
 
-  // Update filter tags
-  function updateActiveFilters() {
-    activeFilterContainer.innerHTML = "";
-    filters.forEach(f => {
-      if (f.value.toLowerCase() !== f.options[0].value.toLowerCase()) {
-        const tag = document.createElement("span");
-        tag.className = "filter-tag";
-        tag.textContent = f.value;
-        tag.onclick = () => {
-          f.value = f.options[0].value;
-          applyAllFilters();
-        };
-        activeFilterContainer.appendChild(tag);
-      }
-    });
-  }
-
-  // Sorting logic
+  // --- SORTING FUNCTION ---
   function applySorting() {
-    const sortType = sortSelect?.value;
-    if (!sortType || sortType === "Sort By") return;
+    if (!sortSelect) return;
+    const sortType = sortSelect.value;
+    if (sortType === "Sort By") return;
 
     const grid = document.querySelector(".car-grid");
-    const visibleCards = Array.from(carCards).filter(card => card.style.display !== "none");
+    const visibleCards = Array.from(carCards).filter(card => !card.classList.contains("hidden-card"));
 
     visibleCards.sort((a, b) => {
       const priceA = parseFloat(a.dataset.price);
@@ -76,54 +62,72 @@ document.addEventListener("DOMContentLoaded", () => {
     visibleCards.forEach(card => grid.appendChild(card));
   }
 
-  // Reset filters
-  resetBtn?.addEventListener("click", () => {
-    filters.forEach(f => f.value = f.options[0].value);
-    searchInput.value = "";
-    sortSelect.value = "Sort By";
-    applyAllFilters();
+  // --- RESET BUTTON ---
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      filters.forEach(f => (f.value = f.options[0].value));
+      searchInput.value = "";
+      if (sortSelect) sortSelect.value = "Sort By";
+      carCards.forEach(card => card.classList.remove("hidden-card"));
+    });
+  }
+
+  // --- POPUP FUNCTION ---
+  function showCenterPopup(message, success = true) {
+    const oldPopup = document.querySelector(".center-popup");
+    if (oldPopup) oldPopup.remove();
+
+    const popup = document.createElement("div");
+    popup.className = `center-popup ${success ? "success" : "error"}`;
+    popup.innerHTML = `
+      <div class="popup-content">
+        <span class="popup-icon">${success ? "✅" : "❌"}</span>
+        <p>${message}</p>
+      </div>
+    `;
+    document.body.appendChild(popup);
+
+    setTimeout(() => popup.classList.add("show"), 100);
+    setTimeout(() => {
+      popup.classList.remove("show");
+      setTimeout(() => popup.remove(), 500);
+    }, 2500);
+  }
+
+  // --- BOOK BUTTON ---
+  const bookBtn = document.getElementById("book-btn");
+  if (bookBtn) {
+    bookBtn.addEventListener("click", () => {
+      const visibleCars = Array.from(carCards).filter(c => !c.classList.contains("hidden-card"));
+      if (visibleCars.length === 1) {
+        const carName = visibleCars[0].querySelector("h3").textContent;
+        showCenterPopup(`✅ Test drive booked for ${carName}!`, true);
+      } else if (visibleCars.length > 1) {
+        showCenterPopup("❗ Please filter to one car before booking.", false);
+      } else {
+        showCenterPopup("❌ No car visible. Please search or filter first.", false);
+      }
+    });
+  }
+
+  // --- SERVICES BUTTON ---
+  const serviceBtn = document.getElementById("service-btn");
+  if (serviceBtn) {
+    serviceBtn.addEventListener("click", () => {
+      window.location.href = "services.html";
+    });
+  }
+
+  // --- GLOW EFFECT (Optional enhancement) ---
+  carCards.forEach(card => {
+    card.addEventListener("mouseenter", () => card.classList.add("glow-active"));
+    card.addEventListener("mouseleave", () => card.classList.remove("glow-active"));
   });
 
-  // Load saved filter state
-  filters.forEach(f => {
-    const saved = localStorage.getItem(f.name);
-    if (saved) f.value = saved;
-  });
-  searchInput.value = localStorage.getItem("searchValue") || "";
-  if (sortSelect) sortSelect.value = localStorage.getItem("sortValue") || "Sort By";
+  // --- SEARCH + FILTER INIT ---
+  if (searchButton) searchButton.addEventListener("click", applyAllFilters);
+  if (searchInput) searchInput.addEventListener("input", applyAllFilters);
+  filters.forEach(f => f.addEventListener("change", applyAllFilters));
 
   applyAllFilters();
-
-  // Save filter state before leaving
-  window.addEventListener("beforeunload", () => {
-    filters.forEach(f => localStorage.setItem(f.name, f.value));
-    localStorage.setItem("searchValue", searchInput.value);
-    localStorage.setItem("sortValue", sortSelect?.value || "");
-  });
-
-  // Event listeners
-  searchInput.addEventListener("input", applyAllFilters);
-  searchButton.addEventListener("click", applyAllFilters);
-  filters.forEach(filter => filter.addEventListener("change", applyAllFilters));
-  sortSelect?.addEventListener("change", applyAllFilters);
-
-  // Book Test Drive
-  const bookBtn = document.querySelector(".actions .btn:first-child");
-  bookBtn?.addEventListener("click", () => {
-    const visibleCars = Array.from(carCards).filter(card => card.style.display !== "none");
-    if (visibleCars.length === 1) {
-      const carName = visibleCars[0].querySelector("h3").textContent;
-      alert(`✅ Test drive booked for ${carName}!`);
-    } else if (visibleCars.length > 1) {
-      alert("🚗 Please filter to one car before booking a test drive.");
-    } else {
-      alert("❌ No car visible. Please search or filter to choose a car first.");
-    }
-  });
-
-  // View Services
-  const serviceBtn = document.querySelector(".actions .btn:last-child");
-  serviceBtn?.addEventListener("click", () => {
-    window.location.href = "services.html";
-  });
 });

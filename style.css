@@ -95,6 +95,10 @@ header {
   background: var(--accent-dark);
 }
 
+.filters {
+  margin-top: 1rem;
+}
+
 .filters select {
   margin: 10px;
   padding: 0.6rem 1rem;
@@ -191,6 +195,14 @@ header {
   padding: 3rem 1rem;
   margin-top: 3rem;
 }
+/* Keep grid size stable even when filtered */
+.hidden-card {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
 
 /* Footer */
 footer {
@@ -208,4 +220,74 @@ footer {
 .footer-info h4 {
   margin-bottom: 10px;
   color: var(--accent);
+}
+/* WhatsApp Floating Button */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
+}
+
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
+}
+/* 🌟 Glow Effect Additions */
+.car-card.glow-active {
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+  transition: box-shadow 0.4s ease, transform 0.3s ease;
+}
+.car-card.glow-active:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(0, 123, 255, 0.6);
+}
+
+.btn:hover {
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+}
+
+.center-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: white;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0, 123, 255, 0.4);
+  padding: 1.5rem 2rem;
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 1000;
+}
+.center-popup.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.center-popup.success {
+  border: 2px solid #007bff;
+}
+.center-popup.error {
+  border: 2px solid #ff4d4d;
+}
+.login{
+  border:2px;
+  border-color: blue;
 }
